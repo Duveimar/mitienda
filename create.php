@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MI tienda</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <div class="container my-5">
@@ -108,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <button type="submit" class="btn btn-primary">Submit</butoon>
                 </div>
                 <div class="col-sm-3 d-grid">
-                    <a class="btn-outline-primary" href="/mitienda/index.php" role="button">Cancel</a>
+                    <a class="btn btn-outline-primary" href="/mitienda/index.php" role="button">Cancel</a>
                 </div> 
             </div>                 
 
