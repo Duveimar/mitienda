@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         header ("location: /mitienda/index.php");
         exit;
     }
-    $id = $row["id"];
+   // $id = $row["id"];
     $name = $row["name"];
     $email = $row["email"];
     $phone = $row["phone"];
@@ -101,7 +101,7 @@ exit;
         ?>
 
         <form method="post">
-            <input type="hidden" name="id" value="<?php echo $id;?>">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-6">

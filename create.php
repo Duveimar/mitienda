@@ -6,7 +6,7 @@ $username="root";
 $password="";
 $database="mitienda";
 //creandoconeccion
-$connection = new mysqli($servername,$username,$password,$database);
+$connection = new mysqli($servername, $username, $password,$database);
 
 
 $name="";
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     do {
-        if(empty($name)|| empty($email)|| empty($phone)|| empty($address)){
+        if(empty($name) || empty($email) || empty($phone) || empty($address)){
             $errorMessage ="All the fields are required";
             break;
         }
