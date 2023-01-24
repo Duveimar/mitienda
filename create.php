@@ -1,5 +1,13 @@
 
 <?php
+
+$servername="localhost";
+$username="root";
+$password="";
+$database="mitienda";
+//creandoconeccion
+$connection = new mysqli($servername,$username,$password,$database);
+
 $name="";
 $email="";
 $phone="";
@@ -20,7 +28,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errorMessage ="All the fields are required";
             break;
         }
-//nuevo cliente a bd
+//agregando cliente a bd
+$sql ="INSERT INTO clients(name, email, phone,address)".
+"VALUES('$name','$email','$phone','$address')";
+$result = $connection->query($sql);
+
+if(!$result){
+    $errorMessage="invalid query:".$connection->error;
+    break;
+}
+
+
         $name = "";
         $email = "";
         $phone = "";
