@@ -38,11 +38,20 @@
                 //verificando
                 if($connection->connect_error){
                     die("Coneccion fallida:".$connection->connect_error)
+
+                
                 }
                 //from row
                 $sql ="SELECT * FROM clients";
                 $result =$connection->query($sql);
 
+                if (!$result){
+                    die("Invalid query:".$connection->error);
+                }
+
+                while($row = $result->fetch_assoc()){
+                    
+                }  
 
 
 
