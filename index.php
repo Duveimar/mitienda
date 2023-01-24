@@ -19,7 +19,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Phone</th>
+                    <th>Phone</th>    
                     <th>Address</th>
                     <th>Created At</th>
                     <th>Action</th>
@@ -37,14 +37,14 @@
 
                 //verificando
                 if($connection->connect_error){
-                    die("Conection failed:".$connection->connect_error);
+                    die("Conection failed:" . $connection->connect_error);
                 }
                 //from row
                 $sql ="SELECT * FROM clients";
                 $result =$connection->query($sql);
 
                 if (!$result){
-                    die("Invalid query:".$connection->error);
+                    die("Invalid query:" . $connection->error);
                 }
 
                 while($row = $result->fetch_assoc()){

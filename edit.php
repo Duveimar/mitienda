@@ -6,6 +6,7 @@ $database="mitienda";
 //creandoconeccion
 $connection = new mysqli($servername,$username,$password,$database);
 
+
 $id="";
 $name="";
 $email="";
@@ -21,11 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         header("location: /mitienda/index.php");
         exit;
     }
-
+    
     $id = $_GET["id"]; 
 
-
-    $sql ="SELECT * FROM clients WHERE id=$id";
+    $sql ="EXPLAIN SELECT * FROM clients WHERE id=$id";
     $result = $connection->query($sql);
     $row =$result->fetch_assoc();
 
@@ -33,15 +33,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         header ("location: /mitienda/index.php");
         exit;
     }
-   // $id = $row["id"];
+
+    $id = $row["id"];
     $name = $row["name"];
     $email = $row["email"];
     $phone = $row["phone"];
     $address = $row["address"];
 
 }
-else {
-    
+    else{
+
     $id = $_POST["id"];
     $name = $_POST["name"];
     $email = $_POST["email"];
@@ -53,27 +54,28 @@ else {
             $errorMessage ="All the fields are required";
             break;
         }
-        $sql="UPDATE clients" .
-        "SET name='$name', email = '$email', phone= '$phone',address = '$address' ".
-        "WHERE id = $id";
 
-        $result=$connection->query($sql);
+        $sql="UPDATE clients" .
+            "SET name='$name', email = '$email', phone= '$phone',address = '$address' ".
+            "WHERE id = $id";
+
+        $result = $connection->query($sql);
+
         if(!$result){
-        $errorMessage="invalid query:" . $connection->error;
-        break;
+            $errorMessage="Invalid query:" . $connection->error;
+            break;
+        }
+
+        $successMessage="Client updated correctly";
+
+        header("location:/mitienda/index.php");
+        exit;
+
+
+        }while(true);
     }
 
-$successMessage="Client updated correctly";
-
-header("location:/mitienda/index.php");
-exit;
-
-
-    } while (true);
-}
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,8 +94,8 @@ exit;
         if(!empty($errorMessage)){
             echo"
             <div class='alert alert-warning alert-dismissible fade show' role='alert'>
-            <strong>$errorMessage)</strong>
-            <button type='button' class= 'btn-close' data-bs-dismiss='alert' aria-label='Close'></botton>
+                <strong>$errorMessage)</strong>
+                <button type='button' class= 'btn-close' data-bs-dismiss='alert' aria-label='Close'></botton>
             </div>  
             ";
         }
