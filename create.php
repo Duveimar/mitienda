@@ -1,3 +1,20 @@
+
+<?php
+$name="";
+$email="";
+$phone="";
+$address="";
+
+if ($_SERVER['REQUEST_METHOD']== 'POST') {
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $phone = $_POST["phone"];
+    $address = $_POST["address"];
+    
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,25 +31,25 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="name"value="">
+                    <input type="text" class="form-control" name="name"value="<?php echo $name;?>">
                 </div>     
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="email"value="">
+                    <input type="text" class="form-control" name="email"value="<?php echo $email;?>">
                 </div>     
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Phone</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="phone"value="">
+                    <input type="text" class="form-control" name="phone"value="<?php echo $phone;?>">
                 </div>     
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Address</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="address"value="">
+                    <input type="text" class="form-control" name="address"value="<?php echo $address;?>">
                 </div>     
             </div>
 
@@ -41,7 +58,7 @@
                     <button type="submit" class="btn btn-primary">Submit</butoon>
                 </div>
                 <div class="col-sm-3 d-grid">
-                    <a class="btn-outline-primary" href="/" role="button">Cancel</a>
+                    <a class="btn-outline-primary" href="/mitienda/index.php" role="button">Cancel</a>
                 </div> 
             </div>                 
 
