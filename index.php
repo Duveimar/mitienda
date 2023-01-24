@@ -37,9 +37,7 @@
 
                 //verificando
                 if($connection->connect_error){
-                    die("Coneccion fallida:".$connection->connect_error)
-
-                
+                    die("Conection failed:".$connection->connect_error);
                 }
                 //from row
                 $sql ="SELECT * FROM clients";
@@ -50,24 +48,24 @@
                 }
 
                 while($row = $result->fetch_assoc()){
-                    
-                }  
-
-
-
-                ?>
-                <tr>
-                    <th>10</th>
-                    <th>Duveimar Arevalo Melo</th>
-                    <th>arevalomeloduveimar@gmail.com</th>
-                    <th>+57 3204022980</th>
-                    <th>Bogota</th>
-                    <th>23/1/2023</th>
+                    echo"
+                    <tr>
+                    <th>$row[id]</th>
+                    <th>$row[name]</th>
+                    <th>$row[email]</th>
+                    <th>$row[phone]</th>
+                    <th>$row[address]</th>
+                    <th>$row[created_at]</th>
                     <th>
-                        <a class='btn btn-primary btn-sm' href='/mitienda/edit.php'>Editar</a>
-                        <a class='btn btn-danger btn-sm' href='/mitienda/delete.php'>Borrar</a>
+                        <a class='btn btn-primary btn-sm' href='/mitienda/edit.php?id=$row[id]'>Editar</a>
+                        <a class='btn btn-danger btn-sm' href='/mitienda/delete.php?id=$row[id]'>Borrar</a>
                     </th>
                 </tr>
+                    ";
+                }  
+
+                ?>
+                
             </tbody>
         </table>
 
