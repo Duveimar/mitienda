@@ -1,13 +1,8 @@
-
 <?php
 
-$servername="localhost";
-$username="root";
-$password="";
-$database="mitienda";
-//creandoconeccion
-$connection = new mysqli($servername,$username,$password,$database);
 
+
+$id="";
 $name="";
 $email="";
 $phone="";
@@ -16,44 +11,49 @@ $address="";
 $errorMessage ="";
 $successMessage="";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    
+    if(!isset($_GET["id"])){
+        header("location: /mitienda/index.php");
+        exit;
+    }
+
+    $id = $_GET["id"];
+
+
+    $sql ="SELECT * FROM clients WHERE id=$id";
+    $result = $connection->query($sql);
+    $row =$result->fetch_assoc();
+
+    if(!$row){
+        header ("location: /mitienda/index.php");
+        exit;
+    }
+    $name = $row["name"];
+    $email = $rowT["email"];
+    $phone = $row["phone"];
+    $address = $row["address"];
+
+}
+else {
     $name = $_POST["name"];
     $email = $_POST["email"];
     $phone = $_POST["phone"];
     $address = $_POST["address"];
 
-
     do {
-        if(empty($name)|| empty($email)|| empty($phone)|| empty($address)){
+        if(empty($id)||empty($name)|| empty($email)|| empty($phone)|| empty($address)){
             $errorMessage ="All the fields are required";
             break;
         }
-//agregando cliente a bd
-$sql ="INSERT INTO clients(name, email, phone,address)".
-"VALUES('$name','$email','$phone','$address')";
-$result = $connection->query($sql);
+        $sql="UPDATE clients" .
+        "SET name='$name',email='$email',phone'$phone',address='$address".
+        "WHERE id=$id";
 
-if(!$result){
-    $errorMessage="invalid query:".$connection->error;
-    break;
+    } while (true);
 }
 
-
-        $name = "";
-        $email = "";
-        $phone = "";
-        $address = "";
-
-        $successMessage="Client added correctly";
-
-        header("location: /mitienda/index.php");
-        exit;
-
-    } while (false);
-    
-}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -82,6 +82,7 @@ if(!$result){
         ?>
 
         <form method="post">
+            <imput type="hidden" value="<?php echo $id;?>">
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-6">
