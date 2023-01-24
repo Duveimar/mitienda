@@ -5,11 +5,31 @@ $email="";
 $phone="";
 $address="";
 
-if ($_SERVER['REQUEST_METHOD']== 'POST') {
+$errorMessage ="";
+$successMessage="";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST["name"];
     $email = $_POST["email"];
     $phone = $_POST["phone"];
     $address = $_POST["address"];
+
+
+    do {
+        if(empty($name)|| empty($email)|| empty($phone)|| empty($address)){
+            $errorMessage ="All the fields are required";
+            break;
+        }
+//nuevo cliente a bd
+        $name = "";
+        $email = "";
+        $phone = "";
+        $address = "";
+
+        $successMessage="Cliente added correctly";
+        
+
+    } while (false);
     
 }
 ?>
@@ -27,6 +47,19 @@ if ($_SERVER['REQUEST_METHOD']== 'POST') {
 <body>
     <div class="container my-5">
         <h2>Nuevo Cliente</h2>
+
+        <?php
+        if(!empty($errorMessage)){
+            echo"
+            <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+            <strong>$errorMessage)</strong>
+            <button type='button' class= 'btn-close' data-bs-dismiss='alert' aria-label='Close'></botton>
+            </div>  
+            ";
+        }
+
+        ?>
+
         <form method="post">
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Name</label>
@@ -52,6 +85,23 @@ if ($_SERVER['REQUEST_METHOD']== 'POST') {
                     <input type="text" class="form-control" name="address"value="<?php echo $address;?>">
                 </div>     
             </div>
+
+            <?php 
+            if(!empty($successMessage)){
+                echo"
+                <div class='row mb-3'>
+                    <div class='offset-sm-3 col-sm-6'>
+                        <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                        <strong>$successMessage)</strong>
+                        <button type='button' class= 'btn-close' data-bs-dismiss='alert' aria-label='Close'></botton>
+                        </div>
+                
+                    </div>    
+                </div>
+                ";
+            }
+            ?>
+
 
             <div class="row mb-3">
                 <div class="offset-sm-3 col-sm-3 d-grid">

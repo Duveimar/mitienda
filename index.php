@@ -11,7 +11,7 @@
 
     <div class="container my-5">
         <h2>Listado de clientes</h2>
-        <a class="btn btn-primary" href="/mitienda/crear.php" role="button">Nuevo cliente</a>
+        <a class="btn btn-primary" href="/mitienda/create.php" role="button">Nuevo cliente</a>
         <br>
         <table class="table">
             <thead>
