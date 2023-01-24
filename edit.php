@@ -1,6 +1,10 @@
 <?php
-
-
+$servername="localhost";
+$username="root";
+$password="";
+$database="mitienda";
+//creandoconeccion
+$connection = new mysqli($servername,$username,$password,$database);
 
 $id="";
 $name="";
@@ -18,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         exit;
     }
 
-    $id = $_GET["id"];
+    $id = $_GET["id"]; 
 
 
     $sql ="SELECT * FROM clients WHERE id=$id";
@@ -29,26 +33,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         header ("location: /mitienda/index.php");
         exit;
     }
+    $id = $row["id"];
     $name = $row["name"];
-    $email = $rowT["email"];
+    $email = $row["email"];
     $phone = $row["phone"];
     $address = $row["address"];
 
 }
 else {
+    
+    $id = $_POST["id"];
     $name = $_POST["name"];
     $email = $_POST["email"];
     $phone = $_POST["phone"];
     $address = $_POST["address"];
 
     do {
-        if(empty($id)||empty($name)|| empty($email)|| empty($phone)|| empty($address)){
+        if(empty($id) || empty($name) || empty($email) || empty($phone) || empty($address)){
             $errorMessage ="All the fields are required";
             break;
         }
         $sql="UPDATE clients" .
-        "SET name='$name',email='$email',phone'$phone',address='$address".
-        "WHERE id=$id";
+        "SET name='$name', email = '$email', phone= '$phone',address = '$address' ".
+        "WHERE id = $id";
+
+        $result=$connection->query($sql);
+        if(!$result){
+        $errorMessage="invalid query:" . $connection->error;
+        break;
+    }
+
+$successMessage="Client updated correctly";
+
+header("location:/mitienda/index.php");
+exit;
+
 
     } while (true);
 }
@@ -82,7 +101,7 @@ else {
         ?>
 
         <form method="post">
-            <imput type="hidden" value="<?php echo $id;?>">
+            <input type="hidden" name="id" value="<?php echo $id;?>">
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-6">

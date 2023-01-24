@@ -8,6 +8,7 @@ $database="mitienda";
 //creandoconeccion
 $connection = new mysqli($servername,$username,$password,$database);
 
+
 $name="";
 $email="";
 $phone="";

@@ -49,17 +49,17 @@
 
                 while($row = $result->fetch_assoc()){
                     echo"
-                    <tr>
-                    <th>$row[id]</th>
-                    <th>$row[name]</th>
-                    <th>$row[email]</th>
-                    <th>$row[phone]</th>
-                    <th>$row[address]</th>
-                    <th>$row[created_at]</th>
-                    <th>
-                        <a class='btn btn-primary btn-sm' href='/mitienda/edit.php?id=$row[id]'>Editar</a>
-                        <a class='btn btn-danger btn-sm' href='/mitienda/delete.php?id=$row[id]'>Borrar</a>
-                    </th>
+                <tr>
+                    <td>$row[id]</td>
+                    <td>$row[name]</td>
+                    <td>$row[email]</td>
+                    <td>$row[phone]</td>
+                    <td>$row[address]</td>
+                    <td>$row[created_at]</td>
+                    <td>
+                        <a class='btn btn-primary btn-sm' href='/mitienda/edit.php?id=$row[id]'>Edit</a>
+                        <a class='btn btn-danger btn-sm' href='/mitienda/delete.php?id=$row[id]'>Delete</a>
+                    </td>
                 </tr>
                     ";
                 }  
